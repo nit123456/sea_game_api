@@ -21,6 +21,11 @@ return new class extends Migration
                   ->references('id')
                   ->on('countries')
                   ->onDelete('cascade');
+            $table->unsignedBigInteger('competition_id');
+            $table->foreign('competition_id')
+                  ->references('id')
+                  ->on('competitions')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
