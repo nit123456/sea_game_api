@@ -13,7 +13,10 @@ class TicketController extends Controller
     {
         //
     }
-
+    // Buy a Ticket
+    public function buyTicket(){
+        
+    }
     /**
      * Store a newly created resource in storage.
      */

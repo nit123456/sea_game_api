@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('date');
+            $table->text('description');
             $table->unsignedBigInteger('stadium_id');
             $table->integer('ticket_number');
             $table->foreign('stadium_id')

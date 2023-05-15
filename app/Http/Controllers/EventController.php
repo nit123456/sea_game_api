@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -45,7 +46,22 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator= Validator::make(
+            $request->all(),
+            [
+                'name'=>'required|max:20',
+                'date'=>'required|date',
+                'description'=>'min:5',
+                'stadium_id'=>'required|integer|exists:stadia,id',
+                'ticket_number'=>'required|integer|min:50',
+            ]);
+        if($validator->fails()){
+            return $validator->errors();
+        }
+        else{
+            Event::create($validator->validated());
+            return response()->json(['message'=>'The event has created.'],200);
+        };
     }
 
     /**
