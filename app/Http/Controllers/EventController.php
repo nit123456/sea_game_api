@@ -77,7 +77,24 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $event= Event::find($id);
+        $validator= Validator::make(
+            $request->all(),
+            [
+                'name'=>'required|max:20',
+                'date'=>'required|date',
+                'description'=>'min:5',
+                'stadium_id'=>'required|integer|exists:stadia,id',
+                'ticket_number'=>'required|integer|min:50',
+            ]);
+        if($validator->fails()){
+            return $validator->errors();
+        }
+        else{
+            $event->fill($validator->validated());
+            $event->save();
+            return response()->json(['message'=>'The event has been updated.','data'=>$event],200);
+        }
     }
 
     /**
@@ -85,6 +102,8 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $event= Event::find($id);
+        $event->delete();
+        return response()->json(['message'=>'The event has been deleted.'],200);
     }
 }

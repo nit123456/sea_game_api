@@ -23,3 +23,5 @@ Route::get('/', [EventController::class, 'index']);
 Route::get('/event/{name}', [EventController::class, 'search']);
 Route::get('/detailEvent/{id}', [EventController::class, 'detailEvent']);
 Route::post('/newEvent', [EventController::class, 'store']);
+Route::put('/newEvent/{id}', [EventController::class, 'update']);
+Route::delete('/event/{id}', [EventController::class, 'destroy']);
