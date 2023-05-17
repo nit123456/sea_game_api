@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::get('/detailEvent/{id}', [EventController::class, 'detailEvent']);
 Route::post('/newEvent', [EventController::class, 'store']);
 Route::put('/newEvent/{id}', [EventController::class, 'update']);
 Route::delete('/event/{id}', [EventController::class, 'destroy']);
+Route::post('/ticket', [TicketController::class, 'buyTicket']);
